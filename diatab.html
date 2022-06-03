@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--<script src="diatab.js"></script>-->
+    <script>
+        function confirmar(){
+    var date1= document.getElementById('today');
+    var date2= document.getElementById('date');
+    var result= document.getElementById('ress');
+
+    var d1= new Date(date1.value);
+    var d2= new Date(date2.value);
+    // Data ta subtraindo 1, não sei ainda o porque
+    //Colocar a quantidade de dias +1 para dar certo
+    d1.setDate(d1.getDate() + 1);
+    d2.setDate(d2.getDate() + 1);
+
+    var diff= (d2.getTime()- d1.getTime())/86400000;
+    for(let i=0;i<diff;i+=2){
+        d1.setDate(d1.getDate() + 2);
+        
+    }
+    if(d1.getTime()==d2.getTime()){
+        result.style.color='red';
+        
+        result.innerHTML= "Vou trabalhar!"
+
+    }
+    else{
+        result.style.color='green';
+        result.innerHTML="Não vou trabalhar!"
+    }}
+
+    </script>
+    <style>
+        body{
+            font-size: 20px;
+            font-family: monospace;
+            background-color: rgb(145, 145, 255);
+        }
+    </style>
+
+    <title>Dias Trabalhado</title>
+</head>
+<body>
+    <h1 id="txt">Eu trabalho nesse dia?</h1>
+        <input type="date" name="today" id="today" value="2022-05-27" style="display: none ;">
+    <p>Selecione o dia que deseja saber: 
+        <input type="date" name="date" id="date" value="2022-05-31">
+    </p>
+    <p><input type="button" value="Confirmar" id="bt" onclick="confirmar()"></p>
+    <p id="ress"><strong>Resultado:</strong></p>
+</body>
+</html>
